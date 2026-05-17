@@ -1,0 +1,91 @@
+package com.example.ejerciciosflujoscharacter.Modelo;
+
+import java.io.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+public class ManejoFlujosBytes {
+    File nombreArchivo;
+
+    public ManejoFlujosBytes(String nombreArchivo) {
+        this.nombreArchivo = new File(nombreArchivo);
+    }
+    public void escribirByte(int bit) {
+
+    }
+
+    public int leerByte() {
+        int uByte = -1;
+        int contador = 0;
+        ArrayList<Integer> bites = new ArrayList<>();
+
+
+        FileInputStream entrada = null;
+
+        try {
+            entrada = new FileInputStream(nombreArchivo);
+            while (((uByte = entrada.read()) != -1) && (contador < 8)) {
+                bites.add(uByte);
+                System.out.println(uByte);
+                contador++;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (entrada != null) {
+                try {
+                    entrada.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return uByte;
+    }
+
+    public String verificarFormato(ArrayList bytes) {
+        ArrayList formatoJPEG = new ArrayList();
+
+        formatoJPEG.add(Integer.parseInt("FF", 16));
+        formatoJPEG.add(Integer.parseInt("E0", 16));
+        formatoJPEG.add(Integer.parseInt("E1", 16));
+
+        int valor = bytes.get(0);
+        if (valor == )
+    }
+}
+
+
+
+
+
+
+
+
+
+
+package com.example.ejerciciosflujoscharacter.Modelo;
+
+import java.util.ArrayList;
+
+public class mainrapido {
+    public static void main(String[] args) {
+        int valor = 24;
+
+        int decimal = Integer.parseInt(Integer.toString(valor), 16);
+
+        System.out.println(decimal);
+
+        ManejoFlujosBytes manejo = new ManejoFlujosBytes("");
+        ArrayList bytes = manejo.leerByte();
+        System.out.println("8 Bytes");
+        for (int i = 0; i < bytes.size(); i++) {
+            System.out.println(i);
+        }
+
+
+    }
+}
