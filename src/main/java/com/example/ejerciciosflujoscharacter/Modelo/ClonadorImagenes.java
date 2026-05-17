@@ -6,10 +6,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.function.IntConsumer;
 
 public class ClonadorImagenes {
-
+    /**
+     * Esta tarea copia un archivo dado
+     * @param archivo Archivo dado por el usuario
+     * @return Tarea capaz de copiar un archivo y actualizar la barra de progeso
+     */
     public Task<Void> crearCopiaArchivo(File archivo) {
         return new Task<>() {
             @Override
@@ -43,6 +46,4 @@ public class ClonadorImagenes {
         };
 
     }
-
-
 }

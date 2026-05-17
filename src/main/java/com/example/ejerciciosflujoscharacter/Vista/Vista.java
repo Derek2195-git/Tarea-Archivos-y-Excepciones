@@ -1,6 +1,6 @@
 package com.example.ejerciciosflujoscharacter.Vista;
 
-import com.example.ejerciciosflujoscharacter.Controlador.HelloController;
+import com.example.ejerciciosflujoscharacter.Controlador.Controlador;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.concurrent.Task;
@@ -12,14 +12,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.*;
 import java.util.ArrayList;
 
-public class HelloApplication extends Application {
+public class Vista extends Application {
     /**
      * Crea el menú principal
      * @param stage Ventana donde se mostrará todo
@@ -98,7 +97,7 @@ public class HelloApplication extends Application {
      * @param stage Ventana usada en el menu principal
      */
     public void abrirEditorNotas(Stage stage) {
-        HelloController controlador = new HelloController();
+        Controlador controlador = new Controlador();
         controlador.setStage(stage);
 
         VBox contenedorVertical = new VBox(30);
@@ -149,7 +148,7 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(contenedorVertical, 800, 600);
         scene.getStylesheets().add(getClass().getResource("/com/example/ejerciciosflujoscharacter/estilos.css").toExternalForm());
 
-        stage.setTitle("Hello!");
+        stage.setTitle("Editor de texto");
         stage.setScene(scene);
         stage.show();
     }
@@ -159,7 +158,7 @@ public class HelloApplication extends Application {
      * @param stage Ventana usada en el menu principal
      */
     public void abrirEstadisticas(Stage stage) {
-        HelloController controlador = new HelloController();
+        Controlador controlador = new Controlador();
         controlador.setStage(stage);
 
         Button botonCargar = new Button("Cargar archivo");
@@ -227,7 +226,7 @@ public class HelloApplication extends Application {
      * @param stage Ventana usada en los ejercicios anteriores
      */
     public void abrirVisualizadorCSV(Stage stage) {
-        HelloController controlador = new HelloController();
+        Controlador controlador = new Controlador();
         controlador.setStage(stage);
 
         Button botonCargar = new Button("Cargar archivo");
@@ -288,8 +287,12 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
+    /**
+     * Ventana del clonador de imagenes
+     * @param stage Ventana usada en el menú principal
+     */
     public void abrirClonador(Stage stage) {
-        HelloController controlador = new HelloController();
+        Controlador controlador = new Controlador();
         controlador.setStage(stage);
 
         ProgressBar barraDeProgreso = new ProgressBar();
@@ -326,11 +329,15 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
+    /**
+     * Ventana del encriptador de archivos
+     * @param stage Ventana usada en el menú principal
+     */
     public void abrirEncriptador(Stage stage) {
-        HelloController controlador = new HelloController();
+        Controlador controlador = new Controlador();
         controlador.setStage(stage);
 
-        Label labelClave = new Label("Ingresa una clave del 0 al 255 para encriptar el archivo");
+        Label labelClave = new Label("Ingresa una clave del 0 al 255 para encriptar un archivo");
         TextField campoClave = new TextField();
         campoClave.setMaxWidth(100);
 
@@ -369,8 +376,12 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
+    /**
+     * Ventana del identificador de tipo de un archivo
+     * @param stage Ventana usada en el menú principal
+     */
     public void abrirIdentificador(Stage stage) {
-        HelloController controlador = new HelloController();
+        Controlador controlador = new Controlador();
         controlador.setStage(stage);
 
         Label labelResultado = new Label("");

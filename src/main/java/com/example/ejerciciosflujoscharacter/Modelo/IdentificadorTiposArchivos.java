@@ -8,34 +8,18 @@ import java.util.ArrayList;
 public class IdentificadorTiposArchivos {
     File archivo;
 
+    /**
+     * Constructor del identificador
+     * @param archivo Archivo dado por el usuario
+     */
     public IdentificadorTiposArchivos(File archivo) {
         this.archivo = archivo;
     }
 
-    public int leerByte() {
-        int unByte = -1;
-        FileInputStream in = null;
-        try {
-            in = new FileInputStream(archivo);
-            if ((unByte = in.read()) != -1) {
-                System.out.println(unByte);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return unByte;
-    }
-
+    /**
+     * Este metodo lee los primeros 8 bytes del archivo dado
+     * @return ArrayList con los primeros 8 bytes del archivo
+     */
     public ArrayList<Integer> leer8bytes() {
         int unByte = -1;
         int contador = 0;
@@ -45,7 +29,6 @@ public class IdentificadorTiposArchivos {
             in = new FileInputStream(archivo);
             while ((unByte = in.read()) != -1 && (contador < 8)) {
                 ochoBytes.add(unByte);
-                System.out.println(unByte);
                 contador++;
             }
         } catch (FileNotFoundException e) {
@@ -64,6 +47,11 @@ public class IdentificadorTiposArchivos {
         return ochoBytes;
     }
 
+    /**
+     * Este metodo verifica el formato del archivo a partir de los primeros 8 bytes de este
+     * @param ochoBytes Arreglo con los primeros 8 bytes del archivo
+     * @return Cadena con el formato del archivo
+     */
     public String verificarFormato(ArrayList<Integer> ochoBytes) {
         String formato = " ";
         ArrayList<Integer> formatoPDF = new ArrayList<>();
@@ -115,26 +103,34 @@ public class IdentificadorTiposArchivos {
 
         int valor = ochoBytes.getFirst();
 
-
+        boolean formatoEncontrado = false;
         if (valor == formatoPDF.getFirst()) {
             formato = "PDF";
+            formatoEncontrado = true;
         }
         if (valor == formatoJPEG.getFirst()) {
             formato = "JPEG";
+            formatoEncontrado = true;
         }
         if (valor == formatoPNG.getFirst()) {
             formato = "PNG";
+            formatoEncontrado = true;
         }
         if (valor == formatoZIP.getFirst()) {
             formato = "ZIP";
+            formatoEncontrado = true;
         }
         if (valor == formatoMP4.get(3)) {
             formato = "MP4";
+            formatoEncontrado = true;
         }
         if (valor == formatoGIF.getFirst()) {
             formato = "GIF";
+            formatoEncontrado = true;
         }
-        formato = "El formato del archivo introducido no se encontró.";
+        if (!formatoEncontrado) formato = "El formato del archivo introducido no se encontró.";
+
+
         return formato;
     }
 }

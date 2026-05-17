@@ -3,7 +3,11 @@ package com.example.ejerciciosflujoscharacter.Modelo;
 import java.io.*;
 
 public class EncriptadorXOR {
-
+    /**
+     * Esta función encripta un archivo dado por el usuario usando una mascara de tipo XOR
+     * @param archivo Archivo dado por el usuario
+     * @param clave Numero del 0 al 255 usado para encriptar el archivo
+     */
     public void encriptarArchivo(File archivo, int clave) {
         String destino = archivo.getParent() + "/encriptado_" + archivo.getName();
         try (FileInputStream in = new FileInputStream(archivo);

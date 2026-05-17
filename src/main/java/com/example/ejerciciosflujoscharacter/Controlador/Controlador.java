@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.ArrayList;
 
-public class HelloController {
+public class Controlador {
     EditorNotas modeloEditor;
     EstadisticasTexto modeloEstadisticas;
     VisualizadorCSV modeloCSV;
@@ -19,7 +19,10 @@ public class HelloController {
 
     Stage stage;
 
-    public HelloController() {
+    /**
+     * Constructor del controlador
+     */
+    public Controlador() {
         modeloEditor = new EditorNotas();
         modeloEstadisticas = new EstadisticasTexto();
         modeloCSV = new VisualizadorCSV();
@@ -27,10 +30,18 @@ public class HelloController {
         modeloEncriptador = new EncriptadorXOR();
     }
 
+    /**
+     * Setter de la ventana del usuario
+     * @param stage Ventana que está usando el usuario
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     * Este metodo llama al editor de notas para que cargue un archivo
+     * @return Texto del archivo seleccionado
+     */
     public String cargarArchivo() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar archivo de texto");
@@ -51,6 +62,11 @@ public class HelloController {
         return null;
     }
 
+    /**
+     * Este metodo llama al editor de notas para que guarde un archivo
+     * @param texto Texto a guardar en el archivo
+     * @return Bandera que indica si el guardado fue exitoso o no
+     */
     public boolean guardarArchivo(String texto) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Guardar archivo de texto");
@@ -71,6 +87,10 @@ public class HelloController {
         return false;
     }
 
+    /**
+     * Metodo que llama al analizador de archivos
+     * @return Arreglo con las lineas, palabras y caracteres escritos en el archivo
+     */
     public int[] analizarArchivo() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar archivo de texto");
@@ -90,6 +110,10 @@ public class HelloController {
         return null;
     }
 
+    /**
+     * Este metodo llama al visualizador de archivos CSV
+     * @return ArrayList parametrizado con un arreglo de cadenas, cada elemento es una columna de la tabla
+     */
     public ArrayList<String[]> leerCSV() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar archivo CSV");
@@ -109,6 +133,10 @@ public class HelloController {
 
     }
 
+    /**
+     * Este metodo llama al clonador de imagenes para que pueda empezar con el copiado
+     * @return Retorna la tarea que clona un archivo definida en el modelo
+     */
     public Task<Void> clonarArchivo() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Selecciona la imagen a clonar");
@@ -121,6 +149,10 @@ public class HelloController {
         return null;
     }
 
+    /**
+     * Este metodo llama al encriptador de archivos
+     * @param clave Numero del 0 al 255 el cual servirá como una clave para encriptarse
+     */
     public void encriptarArchivo(int clave) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Selecciona un archivo para encriptarlo");
@@ -133,6 +165,11 @@ public class HelloController {
 
     }
 
+    /**
+     * Este metodo llama al identificador de archivos para obtener el arreglo de bytes
+     * y verificar el formato del archivo dado por el usuario
+     * @return Cadena con el formato del archivo
+     */
     public String identificarArchivo() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Selecciona el archivo a identificar");
@@ -146,5 +183,9 @@ public class HelloController {
         }
 
         return null;
+    }
+
+    public String getRutaArchivo(File archivo) {
+        return archivo.getPath();
     }
 }
