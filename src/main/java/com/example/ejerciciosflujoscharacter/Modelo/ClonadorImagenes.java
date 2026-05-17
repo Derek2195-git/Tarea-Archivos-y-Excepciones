@@ -18,7 +18,7 @@ public class ClonadorImagenes {
             @Override
             protected Void call() throws Exception {
                 File destino = new File(archivo.getParent(), "copia_" + archivo.getName());
-
+    
                 try (FileInputStream in = new FileInputStream(archivo);
                      FileOutputStream out = new FileOutputStream(destino)) {
                     byte[] bytes = new byte[1024];

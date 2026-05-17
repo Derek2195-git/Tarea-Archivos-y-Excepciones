@@ -130,7 +130,6 @@ public class IdentificadorTiposArchivos {
         }
         if (!formatoEncontrado) formato = "El formato del archivo introducido no se encontró.";
 
-
         return formato;
     }
 }
